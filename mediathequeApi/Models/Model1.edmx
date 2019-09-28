@@ -1,0 +1,1056 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MediathequeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AbonnementPromo">
+          <Key>
+            <PropertyRef Name="IdAbonnementPromo" />
+          </Key>
+          <Property Name="IdAbonnementPromo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTypeAbonnement" Type="int" Nullable="false" />
+          <Property Name="IdPromo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassificationAge">
+          <Key>
+            <PropertyRef Name="IdClassificationAge" />
+          </Key>
+          <Property Name="IdClassificationAge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgeMinimum" Type="int" Nullable="false" />
+          <Property Name="LibelleClassification" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coordonnees">
+          <Key>
+            <PropertyRef Name="IdCoordonnees" />
+          </Key>
+          <Property Name="IdCoordonnees" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adresse" Type="varchar(max)" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mail" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="IdDocument" />
+          </Key>
+          <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuantiteDocument" Type="int" Nullable="false" />
+          <Property Name="Titre" Type="varchar(max)" Nullable="false" />
+          <Property Name="ISNB" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="Empruntable" Type="tinyint" Nullable="false" />
+          <Property Name="IdClassificationAge" Type="int" Nullable="false" />
+          <Property Name="IdTypeDocument" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exemplaire">
+          <Key>
+            <PropertyRef Name="IdExemplaire" />
+          </Key>
+          <Property Name="IdExemplaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateEmprunt" Type="datetime" Nullable="false" />
+          <Property Name="IdUsager" Type="int" Nullable="false" />
+          <Property Name="IdDocument" Type="int" Nullable="false" />
+          <Property Name="IdStatutExemplaire" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="IdFournisseur" />
+          </Key>
+          <Property Name="IdFournisseur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomFournisseur" Type="varchar(max)" Nullable="false" />
+          <Property Name="Siret" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdCoordonnees" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleNotification" Type="varchar(max)" Nullable="false" />
+          <Property Name="TypeNotification" Type="int" Nullable="false" />
+          <Property Name="DateNotification" Type="datetime" Nullable="false" />
+          <Property Name="IdUsager" Type="int" />
+          <Property Name="IdFournisseur" Type="int" />
+          <Property Name="IdExemplaire" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paiement">
+          <Key>
+            <PropertyRef Name="IdPaiement" />
+          </Key>
+          <Property Name="IdPaiement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsager" Type="int" Nullable="false" />
+          <Property Name="DatePaiement" Type="datetime" Nullable="false" />
+          <Property Name="IdTypeAbonnement" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="IdPromo" />
+          </Key>
+          <Property Name="IdPromo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibellePromo" Type="varchar(max)" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" Nullable="false" />
+          <Property Name="DateFin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatutExemplaire">
+          <Key>
+            <PropertyRef Name="IdStatutExemplaire" />
+          </Key>
+          <Property Name="IdStatutExemplaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleStatutExemplaire" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatutUsager">
+          <Key>
+            <PropertyRef Name="IdStatutUsager" />
+          </Key>
+          <Property Name="IdStatutUsager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleStatutUsager" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeAbonnement">
+          <Key>
+            <PropertyRef Name="IdTypeAbonnement" />
+          </Key>
+          <Property Name="IdTypeAbonnement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleTypeAbonnement" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prix" Type="money" Nullable="false" />
+          <Property Name="IdClassificationAge" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeDocument">
+          <Key>
+            <PropertyRef Name="IdTypeDocument" />
+          </Key>
+          <Property Name="IdTypeDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleTypeDocument" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usager">
+          <Key>
+            <PropertyRef Name="IdUsager" />
+          </Key>
+          <Property Name="IdUsager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomUsager" Type="varchar(max)" Nullable="false" />
+          <Property Name="PrenomUsager" Type="varchar(max)" Nullable="false" />
+          <Property Name="DateNaissance" Type="date" Nullable="false" />
+          <Property Name="DateInscription" Type="datetime" Nullable="false" />
+          <Property Name="Caution" Type="tinyint" Nullable="false" />
+          <Property Name="IdCoordonnees" Type="int" Nullable="false" />
+          <Property Name="IdStatutUsager" Type="int" Nullable="false" />
+          <Property Name="IdTypeAbonnement" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Abonnemen__IdPro__5070F446">
+          <End Role="Promo" Type="Self.Promo" Multiplicity="1" />
+          <End Role="AbonnementPromo" Type="Self.AbonnementPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="IdPromo" />
+            </Principal>
+            <Dependent Role="AbonnementPromo">
+              <PropertyRef Name="IdPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Abonnemen__IdTyp__5165187F">
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="1" />
+          <End Role="AbonnementPromo" Type="Self.AbonnementPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAbonnement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Principal>
+            <Dependent Role="AbonnementPromo">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__IdClas__52593CB8">
+          <End Role="ClassificationAge" Type="Self.ClassificationAge" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassificationAge">
+              <PropertyRef Name="IdClassificationAge" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdClassificationAge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__IdType__534D60F1">
+          <End Role="TypeDocument" Type="Self.TypeDocument" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDocument">
+              <PropertyRef Name="IdTypeDocument" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdTypeDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exemplair__IdDoc__5441852A">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="IdDocument" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exemplair__IdSta__5535A963">
+          <End Role="StatutExemplaire" Type="Self.StatutExemplaire" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutExemplaire">
+              <PropertyRef Name="IdStatutExemplaire" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdStatutExemplaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exemplair__IdUsa__5629CD9C">
+          <End Role="Usager" Type="Self.Usager" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usager">
+              <PropertyRef Name="IdUsager" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fournisse__IdCoo__571DF1D5">
+          <End Role="Coordonnees" Type="Self.Coordonnees" Multiplicity="1" />
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coordonnees">
+              <PropertyRef Name="IdCoordonnees" />
+            </Principal>
+            <Dependent Role="Fournisseur">
+              <PropertyRef Name="IdCoordonnees" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdExe__5812160E">
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exemplaire">
+              <PropertyRef Name="IdExemplaire" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdExemplaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdFou__59063A47">
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fournisseur">
+              <PropertyRef Name="IdFournisseur" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdFournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdUsa__59FA5E80">
+          <End Role="Usager" Type="Self.Usager" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usager">
+              <PropertyRef Name="IdUsager" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paiement__IdType__5AEE82B9">
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="1" />
+          <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAbonnement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Principal>
+            <Dependent Role="Paiement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paiement__IdUsag__5BE2A6F2">
+          <End Role="Usager" Type="Self.Usager" Multiplicity="1" />
+          <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usager">
+              <PropertyRef Name="IdUsager" />
+            </Principal>
+            <Dependent Role="Paiement">
+              <PropertyRef Name="IdUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TypeAbonn__IdCla__5CD6CB2B">
+          <End Role="ClassificationAge" Type="Self.ClassificationAge" Multiplicity="1" />
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassificationAge">
+              <PropertyRef Name="IdClassificationAge" />
+            </Principal>
+            <Dependent Role="TypeAbonnement">
+              <PropertyRef Name="IdClassificationAge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usager__IdCoordo__5DCAEF64">
+          <End Role="Coordonnees" Type="Self.Coordonnees" Multiplicity="1" />
+          <End Role="Usager" Type="Self.Usager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coordonnees">
+              <PropertyRef Name="IdCoordonnees" />
+            </Principal>
+            <Dependent Role="Usager">
+              <PropertyRef Name="IdCoordonnees" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usager__IdStatut__5EBF139D">
+          <End Role="StatutUsager" Type="Self.StatutUsager" Multiplicity="1" />
+          <End Role="Usager" Type="Self.Usager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutUsager">
+              <PropertyRef Name="IdStatutUsager" />
+            </Principal>
+            <Dependent Role="Usager">
+              <PropertyRef Name="IdStatutUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usager__IdTypeAb__5FB337D6">
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="1" />
+          <End Role="Usager" Type="Self.Usager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAbonnement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Principal>
+            <Dependent Role="Usager">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MediathequeModelStoreContainer">
+          <EntitySet Name="AbonnementPromo" EntityType="Self.AbonnementPromo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassificationAge" EntityType="Self.ClassificationAge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coordonnees" EntityType="Self.Coordonnees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exemplaire" EntityType="Self.Exemplaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paiement" EntityType="Self.Paiement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promo" EntityType="Self.Promo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatutExemplaire" EntityType="Self.StatutExemplaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatutUsager" EntityType="Self.StatutUsager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeAbonnement" EntityType="Self.TypeAbonnement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeDocument" EntityType="Self.TypeDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usager" EntityType="Self.Usager" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Abonnemen__IdPro__5070F446" Association="Self.FK__Abonnemen__IdPro__5070F446">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="AbonnementPromo" EntitySet="AbonnementPromo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Abonnemen__IdTyp__5165187F" Association="Self.FK__Abonnemen__IdTyp__5165187F">
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+            <End Role="AbonnementPromo" EntitySet="AbonnementPromo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__IdClas__52593CB8" Association="Self.FK__Document__IdClas__52593CB8">
+            <End Role="ClassificationAge" EntitySet="ClassificationAge" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__IdType__534D60F1" Association="Self.FK__Document__IdType__534D60F1">
+            <End Role="TypeDocument" EntitySet="TypeDocument" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exemplair__IdDoc__5441852A" Association="Self.FK__Exemplair__IdDoc__5441852A">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exemplair__IdSta__5535A963" Association="Self.FK__Exemplair__IdSta__5535A963">
+            <End Role="StatutExemplaire" EntitySet="StatutExemplaire" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exemplair__IdUsa__5629CD9C" Association="Self.FK__Exemplair__IdUsa__5629CD9C">
+            <End Role="Usager" EntitySet="Usager" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fournisse__IdCoo__571DF1D5" Association="Self.FK__Fournisse__IdCoo__571DF1D5">
+            <End Role="Coordonnees" EntitySet="Coordonnees" />
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdExe__5812160E" Association="Self.FK__Notificat__IdExe__5812160E">
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdFou__59063A47" Association="Self.FK__Notificat__IdFou__59063A47">
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdUsa__59FA5E80" Association="Self.FK__Notificat__IdUsa__59FA5E80">
+            <End Role="Usager" EntitySet="Usager" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paiement__IdType__5AEE82B9" Association="Self.FK__Paiement__IdType__5AEE82B9">
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+            <End Role="Paiement" EntitySet="Paiement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paiement__IdUsag__5BE2A6F2" Association="Self.FK__Paiement__IdUsag__5BE2A6F2">
+            <End Role="Usager" EntitySet="Usager" />
+            <End Role="Paiement" EntitySet="Paiement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TypeAbonn__IdCla__5CD6CB2B" Association="Self.FK__TypeAbonn__IdCla__5CD6CB2B">
+            <End Role="ClassificationAge" EntitySet="ClassificationAge" />
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usager__IdCoordo__5DCAEF64" Association="Self.FK__Usager__IdCoordo__5DCAEF64">
+            <End Role="Coordonnees" EntitySet="Coordonnees" />
+            <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usager__IdStatut__5EBF139D" Association="Self.FK__Usager__IdStatut__5EBF139D">
+            <End Role="StatutUsager" EntitySet="StatutUsager" />
+            <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usager__IdTypeAb__5FB337D6" Association="Self.FK__Usager__IdTypeAb__5FB337D6">
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+            <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MediathequeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AbonnementPromo">
+          <Key>
+            <PropertyRef Name="IdAbonnementPromo" />
+          </Key>
+          <Property Name="IdAbonnementPromo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeAbonnement" Type="Int32" Nullable="false" />
+          <Property Name="IdPromo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Promo" Relationship="Self.FK__Abonnemen__IdPro__5070F446" FromRole="AbonnementPromo" ToRole="Promo" />
+          <NavigationProperty Name="TypeAbonnement" Relationship="Self.FK__Abonnemen__IdTyp__5165187F" FromRole="AbonnementPromo" ToRole="TypeAbonnement" />
+        </EntityType>
+        <EntityType Name="ClassificationAge">
+          <Key>
+            <PropertyRef Name="IdClassificationAge" />
+          </Key>
+          <Property Name="IdClassificationAge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgeMinimum" Type="Int32" Nullable="false" />
+          <Property Name="LibelleClassification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__Document__IdClas__52593CB8" FromRole="ClassificationAge" ToRole="Document" />
+          <NavigationProperty Name="TypeAbonnement" Relationship="Self.FK__TypeAbonn__IdCla__5CD6CB2B" FromRole="ClassificationAge" ToRole="TypeAbonnement" />
+        </EntityType>
+        <EntityType Name="Coordonnees">
+          <Key>
+            <PropertyRef Name="IdCoordonnees" />
+          </Key>
+          <Property Name="IdCoordonnees" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Fournisseur" Relationship="Self.FK__Fournisse__IdCoo__571DF1D5" FromRole="Coordonnees" ToRole="Fournisseur" />
+          <NavigationProperty Name="Usager" Relationship="Self.FK__Usager__IdCoordo__5DCAEF64" FromRole="Coordonnees" ToRole="Usager" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="IdDocument" />
+          </Key>
+          <Property Name="IdDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuantiteDocument" Type="Int32" Nullable="false" />
+          <Property Name="Titre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISNB" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empruntable" Type="Byte" Nullable="false" />
+          <Property Name="IdClassificationAge" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeDocument" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClassificationAge" Relationship="Self.FK__Document__IdClas__52593CB8" FromRole="Document" ToRole="ClassificationAge" />
+          <NavigationProperty Name="TypeDocument" Relationship="Self.FK__Document__IdType__534D60F1" FromRole="Document" ToRole="TypeDocument" />
+          <NavigationProperty Name="Exemplaire" Relationship="Self.FK__Exemplair__IdDoc__5441852A" FromRole="Document" ToRole="Exemplaire" />
+        </EntityType>
+        <EntityType Name="Exemplaire">
+          <Key>
+            <PropertyRef Name="IdExemplaire" />
+          </Key>
+          <Property Name="IdExemplaire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateEmprunt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsager" Type="Int32" Nullable="false" />
+          <Property Name="IdDocument" Type="Int32" Nullable="false" />
+          <Property Name="IdStatutExemplaire" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__Exemplair__IdDoc__5441852A" FromRole="Exemplaire" ToRole="Document" />
+          <NavigationProperty Name="StatutExemplaire" Relationship="Self.FK__Exemplair__IdSta__5535A963" FromRole="Exemplaire" ToRole="StatutExemplaire" />
+          <NavigationProperty Name="Usager" Relationship="Self.FK__Exemplair__IdUsa__5629CD9C" FromRole="Exemplaire" ToRole="Usager" />
+          <NavigationProperty Name="Notification" Relationship="Self.FK__Notificat__IdExe__5812160E" FromRole="Exemplaire" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="IdFournisseur" />
+          </Key>
+          <Property Name="IdFournisseur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomFournisseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Siret" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdCoordonnees" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Coordonnees" Relationship="Self.FK__Fournisse__IdCoo__571DF1D5" FromRole="Fournisseur" ToRole="Coordonnees" />
+          <NavigationProperty Name="Notification" Relationship="Self.FK__Notificat__IdFou__59063A47" FromRole="Fournisseur" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleNotification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeNotification" Type="Int32" Nullable="false" />
+          <Property Name="DateNotification" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsager" Type="Int32" />
+          <Property Name="IdFournisseur" Type="Int32" />
+          <Property Name="IdExemplaire" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exemplaire" Relationship="Self.FK__Notificat__IdExe__5812160E" FromRole="Notification" ToRole="Exemplaire" />
+          <NavigationProperty Name="Fournisseur" Relationship="Self.FK__Notificat__IdFou__59063A47" FromRole="Notification" ToRole="Fournisseur" />
+          <NavigationProperty Name="Usager" Relationship="Self.FK__Notificat__IdUsa__59FA5E80" FromRole="Notification" ToRole="Usager" />
+        </EntityType>
+        <EntityType Name="Paiement">
+          <Key>
+            <PropertyRef Name="IdPaiement" />
+          </Key>
+          <Property Name="IdPaiement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsager" Type="Int32" Nullable="false" />
+          <Property Name="DatePaiement" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdTypeAbonnement" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypeAbonnement" Relationship="Self.FK__Paiement__IdType__5AEE82B9" FromRole="Paiement" ToRole="TypeAbonnement" />
+          <NavigationProperty Name="Usager" Relationship="Self.FK__Paiement__IdUsag__5BE2A6F2" FromRole="Paiement" ToRole="Usager" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="IdPromo" />
+          </Key>
+          <Property Name="IdPromo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibellePromo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AbonnementPromo" Relationship="Self.FK__Abonnemen__IdPro__5070F446" FromRole="Promo" ToRole="AbonnementPromo" />
+        </EntityType>
+        <EntityType Name="StatutExemplaire">
+          <Key>
+            <PropertyRef Name="IdStatutExemplaire" />
+          </Key>
+          <Property Name="IdStatutExemplaire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleStatutExemplaire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Exemplaire" Relationship="Self.FK__Exemplair__IdSta__5535A963" FromRole="StatutExemplaire" ToRole="Exemplaire" />
+        </EntityType>
+        <EntityType Name="StatutUsager">
+          <Key>
+            <PropertyRef Name="IdStatutUsager" />
+          </Key>
+          <Property Name="IdStatutUsager" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleStatutUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usager" Relationship="Self.FK__Usager__IdStatut__5EBF139D" FromRole="StatutUsager" ToRole="Usager" />
+        </EntityType>
+        <EntityType Name="TypeAbonnement">
+          <Key>
+            <PropertyRef Name="IdTypeAbonnement" />
+          </Key>
+          <Property Name="IdTypeAbonnement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleTypeAbonnement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IdClassificationAge" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AbonnementPromo" Relationship="Self.FK__Abonnemen__IdTyp__5165187F" FromRole="TypeAbonnement" ToRole="AbonnementPromo" />
+          <NavigationProperty Name="ClassificationAge" Relationship="Self.FK__TypeAbonn__IdCla__5CD6CB2B" FromRole="TypeAbonnement" ToRole="ClassificationAge" />
+          <NavigationProperty Name="Paiement" Relationship="Self.FK__Paiement__IdType__5AEE82B9" FromRole="TypeAbonnement" ToRole="Paiement" />
+          <NavigationProperty Name="Usager" Relationship="Self.FK__Usager__IdTypeAb__5FB337D6" FromRole="TypeAbonnement" ToRole="Usager" />
+        </EntityType>
+        <EntityType Name="TypeDocument">
+          <Key>
+            <PropertyRef Name="IdTypeDocument" />
+          </Key>
+          <Property Name="IdTypeDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleTypeDocument" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__Document__IdType__534D60F1" FromRole="TypeDocument" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Usager">
+          <Key>
+            <PropertyRef Name="IdUsager" />
+          </Key>
+          <Property Name="IdUsager" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomUsager" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrenomUsager" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateInscription" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Caution" Type="Byte" Nullable="false" />
+          <Property Name="IdCoordonnees" Type="Int32" Nullable="false" />
+          <Property Name="IdStatutUsager" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeAbonnement" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Coordonnees" Relationship="Self.FK__Usager__IdCoordo__5DCAEF64" FromRole="Usager" ToRole="Coordonnees" />
+          <NavigationProperty Name="Exemplaire" Relationship="Self.FK__Exemplair__IdUsa__5629CD9C" FromRole="Usager" ToRole="Exemplaire" />
+          <NavigationProperty Name="Notification" Relationship="Self.FK__Notificat__IdUsa__59FA5E80" FromRole="Usager" ToRole="Notification" />
+          <NavigationProperty Name="Paiement" Relationship="Self.FK__Paiement__IdUsag__5BE2A6F2" FromRole="Usager" ToRole="Paiement" />
+          <NavigationProperty Name="StatutUsager" Relationship="Self.FK__Usager__IdStatut__5EBF139D" FromRole="Usager" ToRole="StatutUsager" />
+          <NavigationProperty Name="TypeAbonnement" Relationship="Self.FK__Usager__IdTypeAb__5FB337D6" FromRole="Usager" ToRole="TypeAbonnement" />
+        </EntityType>
+        <Association Name="FK__Abonnemen__IdPro__5070F446">
+          <End Role="Promo" Type="Self.Promo" Multiplicity="1" />
+          <End Role="AbonnementPromo" Type="Self.AbonnementPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="IdPromo" />
+            </Principal>
+            <Dependent Role="AbonnementPromo">
+              <PropertyRef Name="IdPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Abonnemen__IdTyp__5165187F">
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="1" />
+          <End Role="AbonnementPromo" Type="Self.AbonnementPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAbonnement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Principal>
+            <Dependent Role="AbonnementPromo">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__IdClas__52593CB8">
+          <End Role="ClassificationAge" Type="Self.ClassificationAge" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassificationAge">
+              <PropertyRef Name="IdClassificationAge" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdClassificationAge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TypeAbonn__IdCla__5CD6CB2B">
+          <End Role="ClassificationAge" Type="Self.ClassificationAge" Multiplicity="1" />
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassificationAge">
+              <PropertyRef Name="IdClassificationAge" />
+            </Principal>
+            <Dependent Role="TypeAbonnement">
+              <PropertyRef Name="IdClassificationAge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fournisse__IdCoo__571DF1D5">
+          <End Role="Coordonnees" Type="Self.Coordonnees" Multiplicity="1" />
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coordonnees">
+              <PropertyRef Name="IdCoordonnees" />
+            </Principal>
+            <Dependent Role="Fournisseur">
+              <PropertyRef Name="IdCoordonnees" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usager__IdCoordo__5DCAEF64">
+          <End Role="Coordonnees" Type="Self.Coordonnees" Multiplicity="1" />
+          <End Role="Usager" Type="Self.Usager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coordonnees">
+              <PropertyRef Name="IdCoordonnees" />
+            </Principal>
+            <Dependent Role="Usager">
+              <PropertyRef Name="IdCoordonnees" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Document__IdType__534D60F1">
+          <End Role="TypeDocument" Type="Self.TypeDocument" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDocument">
+              <PropertyRef Name="IdTypeDocument" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdTypeDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exemplair__IdDoc__5441852A">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="IdDocument" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exemplair__IdSta__5535A963">
+          <End Role="StatutExemplaire" Type="Self.StatutExemplaire" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutExemplaire">
+              <PropertyRef Name="IdStatutExemplaire" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdStatutExemplaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exemplair__IdUsa__5629CD9C">
+          <End Role="Usager" Type="Self.Usager" Multiplicity="1" />
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usager">
+              <PropertyRef Name="IdUsager" />
+            </Principal>
+            <Dependent Role="Exemplaire">
+              <PropertyRef Name="IdUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdExe__5812160E">
+          <End Role="Exemplaire" Type="Self.Exemplaire" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exemplaire">
+              <PropertyRef Name="IdExemplaire" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdExemplaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdFou__59063A47">
+          <End Role="Fournisseur" Type="Self.Fournisseur" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fournisseur">
+              <PropertyRef Name="IdFournisseur" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdFournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdUsa__59FA5E80">
+          <End Role="Usager" Type="Self.Usager" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usager">
+              <PropertyRef Name="IdUsager" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paiement__IdType__5AEE82B9">
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="1" />
+          <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAbonnement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Principal>
+            <Dependent Role="Paiement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paiement__IdUsag__5BE2A6F2">
+          <End Role="Usager" Type="Self.Usager" Multiplicity="1" />
+          <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usager">
+              <PropertyRef Name="IdUsager" />
+            </Principal>
+            <Dependent Role="Paiement">
+              <PropertyRef Name="IdUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usager__IdStatut__5EBF139D">
+          <End Role="StatutUsager" Type="Self.StatutUsager" Multiplicity="1" />
+          <End Role="Usager" Type="Self.Usager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutUsager">
+              <PropertyRef Name="IdStatutUsager" />
+            </Principal>
+            <Dependent Role="Usager">
+              <PropertyRef Name="IdStatutUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usager__IdTypeAb__5FB337D6">
+          <End Role="TypeAbonnement" Type="Self.TypeAbonnement" Multiplicity="1" />
+          <End Role="Usager" Type="Self.Usager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAbonnement">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Principal>
+            <Dependent Role="Usager">
+              <PropertyRef Name="IdTypeAbonnement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MediathequeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AbonnementPromo" EntityType="Self.AbonnementPromo" />
+          <EntitySet Name="ClassificationAge" EntityType="Self.ClassificationAge" />
+          <EntitySet Name="Coordonnees" EntityType="Self.Coordonnees" />
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="Exemplaire" EntityType="Self.Exemplaire" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" />
+          <EntitySet Name="Paiement" EntityType="Self.Paiement" />
+          <EntitySet Name="Promo" EntityType="Self.Promo" />
+          <EntitySet Name="StatutExemplaire" EntityType="Self.StatutExemplaire" />
+          <EntitySet Name="StatutUsager" EntityType="Self.StatutUsager" />
+          <EntitySet Name="TypeAbonnement" EntityType="Self.TypeAbonnement" />
+          <EntitySet Name="TypeDocument" EntityType="Self.TypeDocument" />
+          <EntitySet Name="Usager" EntityType="Self.Usager" />
+          <AssociationSet Name="FK__Abonnemen__IdPro__5070F446" Association="Self.FK__Abonnemen__IdPro__5070F446">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="AbonnementPromo" EntitySet="AbonnementPromo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Abonnemen__IdTyp__5165187F" Association="Self.FK__Abonnemen__IdTyp__5165187F">
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+            <End Role="AbonnementPromo" EntitySet="AbonnementPromo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__IdClas__52593CB8" Association="Self.FK__Document__IdClas__52593CB8">
+            <End Role="ClassificationAge" EntitySet="ClassificationAge" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TypeAbonn__IdCla__5CD6CB2B" Association="Self.FK__TypeAbonn__IdCla__5CD6CB2B">
+            <End Role="ClassificationAge" EntitySet="ClassificationAge" />
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fournisse__IdCoo__571DF1D5" Association="Self.FK__Fournisse__IdCoo__571DF1D5">
+            <End Role="Coordonnees" EntitySet="Coordonnees" />
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usager__IdCoordo__5DCAEF64" Association="Self.FK__Usager__IdCoordo__5DCAEF64">
+            <End Role="Coordonnees" EntitySet="Coordonnees" />
+            <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Document__IdType__534D60F1" Association="Self.FK__Document__IdType__534D60F1">
+            <End Role="TypeDocument" EntitySet="TypeDocument" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exemplair__IdDoc__5441852A" Association="Self.FK__Exemplair__IdDoc__5441852A">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exemplair__IdSta__5535A963" Association="Self.FK__Exemplair__IdSta__5535A963">
+            <End Role="StatutExemplaire" EntitySet="StatutExemplaire" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exemplair__IdUsa__5629CD9C" Association="Self.FK__Exemplair__IdUsa__5629CD9C">
+            <End Role="Usager" EntitySet="Usager" />
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdExe__5812160E" Association="Self.FK__Notificat__IdExe__5812160E">
+            <End Role="Exemplaire" EntitySet="Exemplaire" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdFou__59063A47" Association="Self.FK__Notificat__IdFou__59063A47">
+            <End Role="Fournisseur" EntitySet="Fournisseur" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdUsa__59FA5E80" Association="Self.FK__Notificat__IdUsa__59FA5E80">
+            <End Role="Usager" EntitySet="Usager" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paiement__IdType__5AEE82B9" Association="Self.FK__Paiement__IdType__5AEE82B9">
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+            <End Role="Paiement" EntitySet="Paiement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paiement__IdUsag__5BE2A6F2" Association="Self.FK__Paiement__IdUsag__5BE2A6F2">
+            <End Role="Usager" EntitySet="Usager" />
+            <End Role="Paiement" EntitySet="Paiement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usager__IdStatut__5EBF139D" Association="Self.FK__Usager__IdStatut__5EBF139D">
+            <End Role="StatutUsager" EntitySet="StatutUsager" />
+            <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usager__IdTypeAb__5FB337D6" Association="Self.FK__Usager__IdTypeAb__5FB337D6">
+            <End Role="TypeAbonnement" EntitySet="TypeAbonnement" />
+            <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MediathequeModelStoreContainer" CdmEntityContainer="MediathequeEntities">
+          <EntitySetMapping Name="AbonnementPromo">
+            <EntityTypeMapping TypeName="MediathequeModel.AbonnementPromo">
+              <MappingFragment StoreEntitySet="AbonnementPromo">
+                <ScalarProperty Name="IdAbonnementPromo" ColumnName="IdAbonnementPromo" />
+                <ScalarProperty Name="IdTypeAbonnement" ColumnName="IdTypeAbonnement" />
+                <ScalarProperty Name="IdPromo" ColumnName="IdPromo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassificationAge">
+            <EntityTypeMapping TypeName="MediathequeModel.ClassificationAge">
+              <MappingFragment StoreEntitySet="ClassificationAge">
+                <ScalarProperty Name="IdClassificationAge" ColumnName="IdClassificationAge" />
+                <ScalarProperty Name="AgeMinimum" ColumnName="AgeMinimum" />
+                <ScalarProperty Name="LibelleClassification" ColumnName="LibelleClassification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coordonnees">
+            <EntityTypeMapping TypeName="MediathequeModel.Coordonnees">
+              <MappingFragment StoreEntitySet="Coordonnees">
+                <ScalarProperty Name="IdCoordonnees" ColumnName="IdCoordonnees" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="MediathequeModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+                <ScalarProperty Name="QuantiteDocument" ColumnName="QuantiteDocument" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="ISNB" ColumnName="ISNB" />
+                <ScalarProperty Name="Empruntable" ColumnName="Empruntable" />
+                <ScalarProperty Name="IdClassificationAge" ColumnName="IdClassificationAge" />
+                <ScalarProperty Name="IdTypeDocument" ColumnName="IdTypeDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exemplaire">
+            <EntityTypeMapping TypeName="MediathequeModel.Exemplaire">
+              <MappingFragment StoreEntitySet="Exemplaire">
+                <ScalarProperty Name="IdExemplaire" ColumnName="IdExemplaire" />
+                <ScalarProperty Name="DateEmprunt" ColumnName="DateEmprunt" />
+                <ScalarProperty Name="IdUsager" ColumnName="IdUsager" />
+                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+                <ScalarProperty Name="IdStatutExemplaire" ColumnName="IdStatutExemplaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fournisseur">
+            <EntityTypeMapping TypeName="MediathequeModel.Fournisseur">
+              <MappingFragment StoreEntitySet="Fournisseur">
+                <ScalarProperty Name="IdFournisseur" ColumnName="IdFournisseur" />
+                <ScalarProperty Name="NomFournisseur" ColumnName="NomFournisseur" />
+                <ScalarProperty Name="Siret" ColumnName="Siret" />
+                <ScalarProperty Name="IdCoordonnees" ColumnName="IdCoordonnees" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification">
+            <EntityTypeMapping TypeName="MediathequeModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="IdNotification" ColumnName="IdNotification" />
+                <ScalarProperty Name="LibelleNotification" ColumnName="LibelleNotification" />
+                <ScalarProperty Name="TypeNotification" ColumnName="TypeNotification" />
+                <ScalarProperty Name="DateNotification" ColumnName="DateNotification" />
+                <ScalarProperty Name="IdUsager" ColumnName="IdUsager" />
+                <ScalarProperty Name="IdFournisseur" ColumnName="IdFournisseur" />
+                <ScalarProperty Name="IdExemplaire" ColumnName="IdExemplaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paiement">
+            <EntityTypeMapping TypeName="MediathequeModel.Paiement">
+              <MappingFragment StoreEntitySet="Paiement">
+                <ScalarProperty Name="IdPaiement" ColumnName="IdPaiement" />
+                <ScalarProperty Name="IdUsager" ColumnName="IdUsager" />
+                <ScalarProperty Name="DatePaiement" ColumnName="DatePaiement" />
+                <ScalarProperty Name="IdTypeAbonnement" ColumnName="IdTypeAbonnement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promo">
+            <EntityTypeMapping TypeName="MediathequeModel.Promo">
+              <MappingFragment StoreEntitySet="Promo">
+                <ScalarProperty Name="IdPromo" ColumnName="IdPromo" />
+                <ScalarProperty Name="LibellePromo" ColumnName="LibellePromo" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatutExemplaire">
+            <EntityTypeMapping TypeName="MediathequeModel.StatutExemplaire">
+              <MappingFragment StoreEntitySet="StatutExemplaire">
+                <ScalarProperty Name="IdStatutExemplaire" ColumnName="IdStatutExemplaire" />
+                <ScalarProperty Name="LibelleStatutExemplaire" ColumnName="LibelleStatutExemplaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatutUsager">
+            <EntityTypeMapping TypeName="MediathequeModel.StatutUsager">
+              <MappingFragment StoreEntitySet="StatutUsager">
+                <ScalarProperty Name="IdStatutUsager" ColumnName="IdStatutUsager" />
+                <ScalarProperty Name="LibelleStatutUsager" ColumnName="LibelleStatutUsager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeAbonnement">
+            <EntityTypeMapping TypeName="MediathequeModel.TypeAbonnement">
+              <MappingFragment StoreEntitySet="TypeAbonnement">
+                <ScalarProperty Name="IdTypeAbonnement" ColumnName="IdTypeAbonnement" />
+                <ScalarProperty Name="LibelleTypeAbonnement" ColumnName="LibelleTypeAbonnement" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="IdClassificationAge" ColumnName="IdClassificationAge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeDocument">
+            <EntityTypeMapping TypeName="MediathequeModel.TypeDocument">
+              <MappingFragment StoreEntitySet="TypeDocument">
+                <ScalarProperty Name="IdTypeDocument" ColumnName="IdTypeDocument" />
+                <ScalarProperty Name="LibelleTypeDocument" ColumnName="LibelleTypeDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usager">
+            <EntityTypeMapping TypeName="MediathequeModel.Usager">
+              <MappingFragment StoreEntitySet="Usager">
+                <ScalarProperty Name="IdUsager" ColumnName="IdUsager" />
+                <ScalarProperty Name="NomUsager" ColumnName="NomUsager" />
+                <ScalarProperty Name="PrenomUsager" ColumnName="PrenomUsager" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+                <ScalarProperty Name="Caution" ColumnName="Caution" />
+                <ScalarProperty Name="IdCoordonnees" ColumnName="IdCoordonnees" />
+                <ScalarProperty Name="IdStatutUsager" ColumnName="IdStatutUsager" />
+                <ScalarProperty Name="IdTypeAbonnement" ColumnName="IdTypeAbonnement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e8d055897ed49768e0983d4c651ca5b" Name="Diagram1">
+        <EntityTypeShape EntityType="MediathequeModel.AbonnementPromo" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.ClassificationAge" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Coordonnees" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Document" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Exemplaire" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Fournisseur" Width="1.5" PointX="10.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Notification" Width="1.5" PointX="12.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Paiement" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Promo" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.StatutExemplaire" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.StatutUsager" Width="1.5" PointX="6" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.TypeAbonnement" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.TypeDocument" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediathequeModel.Usager" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="MediathequeModel.FK__Abonnemen__IdPro__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Abonnemen__IdTyp__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Document__IdClas__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__TypeAbonn__IdCla__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Fournisse__IdCoo__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Usager__IdCoordo__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Document__IdType__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Exemplair__IdDoc__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Exemplair__IdSta__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Exemplair__IdUsa__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Notificat__IdExe__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Notificat__IdFou__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Notificat__IdUsa__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Paiement__IdType__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Paiement__IdUsag__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Usager__IdStatut__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="MediathequeModel.FK__Usager__IdTypeAb__5FB337D6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
