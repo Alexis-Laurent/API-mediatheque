@@ -147,7 +147,7 @@ namespace mediathequeApi.Controllers
         }
         
 
-        // Méthode sans liste
+        // Livres par id sans liste
         [ResponseType(typeof(DetailsExemplaire))]
         public async Task<IHttpActionResult> Get_Exemplaire2(int id, string token)
         {
